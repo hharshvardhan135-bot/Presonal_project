@@ -1,0 +1,34 @@
+@use "../../styles/abstracts/color.scss" as colors;
+
+.comp-button {
+  border: none;
+  font-family: poppins;
+}
+.comp-button:disabled{
+    background-color: #cccccc;
+}
+.small {
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+}
+.medium {
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.large {
+  border-radius: 2rem;
+  padding: 2rem;
+}
+.primary {
+  background-color: colors.$primary-color;
+  color: #fff;
+}
+.secondary {
+  border: 1px solid black;
+  background-color: red;
+  color: antiquewhite;
+}
+.danger {
+  background-color: blueviolet;
+  color: black;
+}

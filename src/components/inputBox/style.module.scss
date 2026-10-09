@@ -1,0 +1,18 @@
+@use "../../styles/abstracts/color.scss" as colors;
+
+.outerBox {
+  .inpBox {
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+  }
+}
+
+.defaultInput {
+  background-color: colors.$inputBox-color;
+  color: #A4A4A4;
+  opacity: 82%;
+}
+.plainInput {
+  background-color: white;
+}
