@@ -1,0 +1,332 @@
+/* ==================================================================
+   REGISTER PAGE STYLES
+   Tip: change colours / sizes in the VARIABLES block only.
+   Font: add this to public/index.html (or index.css):
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+================================================================== */
+
+/* ---------- VARIABLES ---------- */
+$font: 'Poppins', system-ui, sans-serif;
+
+$bg-dark: #14052e;          // page background
+$field-bg: rgba(255, 255, 255, 0.07);
+$field-border: rgba(255, 255, 255, 0.12);
+$text: #ffffff;
+$text-muted: rgba(255, 255, 255, 0.65);
+$accent: #7e3fd6;           // purple used for links / tagline
+$gradient: linear-gradient(90deg, #5a1fa8 0%, #3f7fb0 100%);
+
+$form-width: 460px;
+$radius: 10px;
+
+$tablet: 1024px;
+$mobile: 640px;
+
+/* ---------- GLOBAL RESET ----------
+   Removes the default browser / Vite template spacing that
+   causes the white gaps around the page. */
+:global(html),
+:global(body),
+:global(#root) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;          // Vite's App.css sets #root { max-width: 1280px }
+  min-height: 100%;
+  display: block;           // Vite's index.css sets body { display: flex }
+  text-align: left;
+  background: #14052e;      // same as $bg-dark, so no white can ever show
+  overflow-x: hidden;
+}
+
+.page,
+.page * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- PAGE LAYOUT ---------- */
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;       // correct height on mobile browsers
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;     // form sits on the right (desktop)
+  padding: 0 8%;
+  overflow: hidden;
+  background: $bg-dark;
+  color: $text;
+  font-family: $font;
+}
+
+/* ---------- BACKGROUND ---------- */
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.backgroundImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+// darkens the right side so the form is easy to read
+.backgroundShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 35%, rgba(20, 5, 46, 0.85) 70%);
+}
+
+/* ---------- HEADER ---------- */
+.header {
+  position: absolute;
+  top: 32px;
+  left: 4%;
+  right: 4%;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// "Have an account? Sign in" – shown on mobile only
+.headerLink {
+  display: none;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $text-muted;
+  text-decoration: none;
+
+  span {
+    color: $text;
+    font-weight: 600;
+  }
+}
+
+/* ---------- FORM ---------- */
+.formWrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: $form-width;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* email input with icon */
+.inputBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 52px;
+  background: $field-bg;
+  border: 1px solid $field-border;
+  border-radius: $radius;
+  color: $text-muted;
+  transition: border-color 0.2s, background 0.2s;
+
+  // highlight the whole box when the input is focused
+  &:focus-within {
+    border-color: $accent;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: $text;
+    font: inherit;
+    font-size: 0.9rem;
+
+    &::placeholder {
+      color: $text-muted;
+    }
+  }
+}
+
+/* gradient sign-up button */
+.primaryButton {
+  height: 52px;
+  border: none;
+  border-radius: $radius;
+  background: $gradient;
+  color: $text;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.2s;
+
+  &:hover {
+    filter: brightness(1.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.divider {
+  height: 1px;
+  margin: 8px 0;
+  background: $field-border;
+}
+
+.smallText {
+  font-size: 0.72rem;
+  color: $text-muted;
+
+  a {
+    color: $accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Google / Facebook buttons */
+.socialButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.socialButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  background: rgba(126, 63, 214, 0.25);
+  border: 1px solid transparent;
+  border-radius: $radius;
+  color: $text;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: rgba(126, 63, 214, 0.4);
+    border-color: $field-border;
+  }
+}
+
+/* ---------- TAGLINE (desktop) ---------- */
+.tagline {
+  position: absolute;
+  left: 4%;
+  bottom: 40px;
+  z-index: 2;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+
+  span {
+    color: $accent;
+  }
+}
+
+/* ---------- FOOTER (mobile) ---------- */
+.footer {
+  display: none;
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================================================================
+   RESPONSIVE
+================================================================== */
+
+/* ---------- Tablet: centre the form ---------- */
+@media (max-width: $tablet) {
+  .page {
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  .backgroundShade {
+    background: rgba(20, 5, 46, 0.65);
+  }
+
+  .tagline {
+    display: none;
+  }
+}
+
+/* ---------- Mobile: planet on top, form below ---------- */
+@media (max-width: $mobile) {
+  .page {
+    align-items: flex-end;
+    padding: 0 20px 72px;
+  }
+
+  // artwork only fills the top part of the screen and fades out
+  .background {
+    bottom: auto;
+    height: 55vh;
+  }
+
+  .backgroundImg {
+    object-position: 30% top;
+  }
+
+  .backgroundShade {
+    background: linear-gradient(180deg, rgba(20, 5, 46, 0) 40%, $bg-dark 100%);
+  }
+
+  .header {
+    top: 20px;
+  }
+
+  .headerLink {
+    display: block;
+  }
+
+  .footer {
+    display: block;
+  }
+
+  .socialButtons {
+    flex-direction: row; // stays side-by-side like the Figma mobile design
+  }
+}
